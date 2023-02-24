@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contacts/provider/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class MyAuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -16,7 +17,7 @@ class MyAuthService {
       final User? user = userCredential.user;
       return user;
     } on FirebaseAuthException catch (e) {
-      print('Error signing in: $e');
+      debugPrintStack(label: e.toString());
       return null;
     }
   }
@@ -53,7 +54,7 @@ class MyAuthService {
       final User? user = userCredential.user;
       return user;
     } on FirebaseAuthException catch (e) {
-      print('Error signing up: $e');
+      debugPrintStack(label: e.toString());
       return null;
     }
   }
@@ -63,7 +64,7 @@ class MyAuthService {
     return user;
   }
 
-  void setData(CurrentUser currentUser) async {
+  void setData(CurrentUser currentUser, BuildContext context) async {
     _firebaseAuth.authStateChanges().listen((User? user) async {
       if (user == null) {
         currentUser.reset = "";
@@ -75,12 +76,13 @@ class MyAuthService {
         currentUser.email = user.email!;
         currentUser.phone = number.docs[0].id;
         currentUser.name = user.email!.split('@')[0];
-        currentUser.user = user;
+        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
       }
     });
   }
 
-  void logout() async {
+  logout(BuildContext context) async {
     await _firebaseAuth.signOut();
+    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
   }
 }

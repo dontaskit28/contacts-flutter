@@ -25,7 +25,6 @@ class _SearchState extends State<Search> {
         .get()
         .then((value) {
       if (value.data()!['name'].contains(term)) {
-        print(value.data()!['name']);
         contacts.add({
           'name': value.data()!['name'],
           'phone': value.data()!['phone'],

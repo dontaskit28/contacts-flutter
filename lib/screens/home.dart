@@ -28,7 +28,7 @@ class _ContactsHomeState extends State<ContactsHome> {
         contacts = contacts;
       });
     } else {
-      print("Permission Denied");
+      debugPrint("Permission not granted");
     }
     uploadData(contacts, user);
   }

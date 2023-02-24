@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
-import '../firebase_options.dart';
 import '../my_auth_service.dart';
 import 'chat.dart';
 import 'util.dart';
@@ -63,7 +61,6 @@ class _RoomsPageState extends State<RoomsPage> {
 
                     return GestureDetector(
                       onTap: () {
-                        print("Rooom tapped");
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => ChatPage(

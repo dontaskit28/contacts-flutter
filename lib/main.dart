@@ -1,11 +1,9 @@
 // ignore_for_file: unnecessary_new
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contacts/provider/user_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'ForgotPassword.dart';
+import 'forgot_password.dart';
 import 'firebase_options.dart';
 import 'home.dart';
 import 'my_auth_service.dart';
@@ -41,9 +39,10 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(),
       debugShowCheckedModeBanner: false,
       routes: <String, WidgetBuilder>{
-        '/signup': (BuildContext context) => SignupPage(),
-        '/home': (BuildContext context) => Home(),
-        '/forgotpassword': (context) => new ForgotPassword()
+        '/signup': (BuildContext context) => const SignupPage(),
+        '/home': (BuildContext context) => const Home(),
+        '/forgotpassword': (context) => const ForgotPassword(),
+        '/login': (context) => const MyHomePage(),
       },
     );
   }
@@ -59,28 +58,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  int _success = 1;
   @override
   void initState() {
     if (!mounted) return;
     CurrentUser currentUser = Provider.of<CurrentUser>(context, listen: false);
-    _authService.setData(currentUser);
+    _authService.setData(currentUser, context);
     super.initState();
   }
 
   void _singIn() async {
-    final User? user = (await _authService.signIn(
-        _emailController.text, _passwordController.text));
-    if (user != null) {
-      setState(() {
-        _success = 2;
-        Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
-      });
-    } else {
-      setState(() {
-        _success = 3;
-      });
-    }
+    await _authService.signIn(_emailController.text, _passwordController.text);
   }
 
   @override
@@ -148,15 +135,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              // Container(
-              //     alignment: Alignment.center,
-              //     padding: const EdgeInsets.symmetric(horizontal: 16),
-              //     child: Text("kishore"),
-              //       style: TextStyle(color: Colors.red),
-              //     )),
-              // SizedBox(
-              //   height: 40,
-              // ),
               Container(
                 height: 40,
                 margin: const EdgeInsets.only(top: 15),

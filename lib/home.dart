@@ -5,7 +5,6 @@ import 'screens/profile.dart';
 import 'screens/rooms.dart';
 import 'screens/settings.dart';
 import 'widgets/drawer.dart';
-import 'signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,13 +20,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Home(),
+      home: const Home(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
   State<Home> createState() => _HomeState();
 }
@@ -35,7 +36,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int selectedIndex = 0;
   final List<Widget> tabs = [
-    ContactsHome(),
+    const ContactsHome(),
     const RoomsPage(),
     const Profile(),
     const Settings(),

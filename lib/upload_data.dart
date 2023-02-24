@@ -1,9 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:contacts/my_auth_service.dart';
 import 'package:contacts/provider/user_provider.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
-import 'package:provider/provider.dart';
 
 void uploadData(List<Contact> contacts, CurrentUser user) async {
   WriteBatch batch = FirebaseFirestore.instance.batch();

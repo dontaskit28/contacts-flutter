@@ -38,8 +38,6 @@ class _UsersPageState extends State<UsersPage> {
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 final user = snapshot.data![index];
-                print(user);
-
                 return GestureDetector(
                   onTap: () {
                     _handlePressed(user, context);

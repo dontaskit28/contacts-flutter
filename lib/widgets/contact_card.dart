@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 class ContactCard extends StatefulWidget {
   final String name;
   final String number;
-  Uint8List? image;
-  ContactCard(
+  final Uint8List? image;
+  const ContactCard(
       {super.key, required this.name, required this.number, this.image});
 
   @override
@@ -28,7 +28,7 @@ class _ContactCardState extends State<ContactCard> {
                 radius: 24,
                 backgroundImage: widget.image != null
                     ? Image.memory(widget.image!).image
-                    : NetworkImage(
+                    : const NetworkImage(
                         'https://www.w3schools.com/howto/img_avatar.png'),
               ),
               const SizedBox(width: 15.0),
