@@ -28,7 +28,11 @@ class _SearchState extends State<Search> {
         .doc(userId)
         .get()
         .then((value) {
-      if (value.data()!['name'].contains(term)) {
+      if (value
+          .data()!['name']
+          .toString()
+          .toLowerCase()
+          .contains(term.toLowerCase())) {
         contacts.add({
           'name': value.data()!['name'],
           'phone': value.data()!['phone'],

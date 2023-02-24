@@ -39,13 +39,16 @@ class MyAuthService {
         password: password,
       );
 
-      await _firestore.collection('allContacts').doc(phone).set({
-        'phone': phone,
-        'email': email,
-        'name': email.split('@')[0],
-        'tags': [],
-        'contacts': []
-      });
+      await _firestore.collection('allContacts').doc(phone).set(
+        {
+          'phone': phone,
+          'email': email,
+          'name': email.split('@')[0],
+          'tags': [],
+          'contacts': []
+        },
+        SetOptions(merge: true),
+      );
 
       currentUser.email = email;
       currentUser.phone = phone;

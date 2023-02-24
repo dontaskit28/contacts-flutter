@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "727521639193",
-    "project_id": "contacts-653d0",
-    "storage_bucket": "contacts-653d0.appspot.com"
+    "project_number": "503445488386",
+    "project_id": "contacts-4870f",
+    "storage_bucket": "contacts-4870f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:727521639193:android:0dbc96fb85a4f145bbe388",
+        "mobilesdk_app_id": "1:503445488386:android:10e79df13cca9461ef781b",
         "android_client_info": {
           "package_name": "com.example.contacts"
         }
       },
       "oauth_client": [
         {
-          "client_id": "727521639193-iqr54kpmffmlcqg8sm9h9qad4k9k06qc.apps.googleusercontent.com",
+          "client_id": "503445488386-hfdb6cl12h99cgq2ap6973emv8lunlhm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD5y4e0Ad7tTPzqB1FYxZiRfz5C8Ktnm1g"
+          "current_key": "AIzaSyCWTEdGpidrojiTaV4zQ6t5dgaYS7jCjWk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "727521639193-iqr54kpmffmlcqg8sm9h9qad4k9k06qc.apps.googleusercontent.com",
+              "client_id": "503445488386-hfdb6cl12h99cgq2ap6973emv8lunlhm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
