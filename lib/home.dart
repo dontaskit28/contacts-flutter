@@ -52,33 +52,27 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Search(),
-              ),
-            );
-          },
-          child: const Text(
-            "Search Here",
-            style: TextStyle(
-              color: Colors.white60,
-              fontSize: 16,
-            ),
+        title: const Text(
+          "Contacts",
+          style: TextStyle(
+            color: Colors.white,
           ),
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.account_circle),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Search(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.search),
           ),
           const SizedBox(width: 20.0),
         ],
-        titleSpacing: 0.0,
       ),
-      drawer: const DrawerWidget(),
       body: IndexedStack(
         index: selectedIndex,
         children: tabs,

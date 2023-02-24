@@ -5,8 +5,14 @@ class ContactCard extends StatefulWidget {
   final String name;
   final String number;
   final Uint8List? image;
-  const ContactCard(
-      {super.key, required this.name, required this.number, this.image});
+  final int? depth;
+  const ContactCard({
+    super.key,
+    required this.name,
+    required this.number,
+    this.image,
+    this.depth,
+  });
 
   @override
   State<ContactCard> createState() => _ContactCardState();
@@ -23,29 +29,42 @@ class _ContactCardState extends State<ContactCard> {
             horizontal: 20.0,
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CircleAvatar(
-                radius: 24,
-                backgroundImage: widget.image != null
-                    ? Image.memory(widget.image!).image
-                    : const NetworkImage(
-                        'https://www.w3schools.com/howto/img_avatar.png'),
-              ),
-              const SizedBox(width: 15.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.name,
-                    style: const TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  CircleAvatar(
+                    radius: 24,
+                    backgroundImage: widget.image != null
+                        ? Image.memory(widget.image!).image
+                        : const NetworkImage(
+                            'https://www.w3schools.com/howto/img_avatar.png'),
                   ),
-                  const SizedBox(height: 3.0),
-                  Text(widget.number)
+                  const SizedBox(width: 15.0),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.name,
+                        style: const TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 3.0),
+                      Text(widget.number)
+                    ],
+                  ),
                 ],
+              ),
+              Text(
+                widget.depth != null ? '${widget.depth}' : '',
+                style: const TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
