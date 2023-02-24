@@ -11,16 +11,14 @@ class ConfirmEmail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-        child: Center(
-            child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Text(
-            message,
-            style: TextStyle(color: Colors.black, fontSize: 16),
-          ),
-        )),
-      ),
+      body: Center(
+          child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Text(
+          message,
+          style: const TextStyle(color: Colors.black, fontSize: 16),
+        ),
+      )),
     );
   }
 }

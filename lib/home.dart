@@ -4,7 +4,6 @@ import 'screens/home.dart';
 import 'screens/profile.dart';
 import 'screens/rooms.dart';
 import 'screens/settings.dart';
-import 'widgets/drawer.dart';
 
 void main() {
   runApp(const MyApp());

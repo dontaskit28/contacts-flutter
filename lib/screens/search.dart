@@ -23,7 +23,7 @@ class _SearchState extends State<Search> {
     if (depth == 0) {
       return;
     }
-    FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection('allContacts')
         .doc(userId)
         .get()
@@ -55,7 +55,7 @@ class _SearchState extends State<Search> {
       loading = true;
     });
     CurrentUser user = Provider.of<CurrentUser>(context, listen: false);
-    search(user.phone, 3, searchController.text);
+    await search(user.phone, 3, searchController.text);
     setState(() {
       loading = false;
     });
@@ -63,7 +63,6 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    CurrentUser user = Provider.of<CurrentUser>(context, listen: true);
     return GestureDetector(
       onTap: () {
         if (contacts.isEmpty) {
@@ -115,16 +114,29 @@ class _SearchState extends State<Search> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: contacts.length,
-                itemBuilder: (context, index) {
-                  return ContactCard(
-                    name: contacts[index]['name'],
-                    number: contacts[index]['phone'],
-                    depth: (3 - contacts[index]['depth']).toInt(),
-                  );
-                },
-              ),
+              child: contacts.isEmpty
+                  ? loading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : const Center(
+                          child: Text(
+                            "No Results",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                  : ListView.builder(
+                      itemCount: contacts.length,
+                      itemBuilder: (context, index) {
+                        return ContactCard(
+                          name: contacts[index]['name'],
+                          number: contacts[index]['phone'],
+                          depth: (3 - contacts[index]['depth']).toInt(),
+                        );
+                      },
+                    ),
             ),
           ],
         ),
